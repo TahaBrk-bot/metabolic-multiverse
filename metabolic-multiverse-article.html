@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Metabolic Multiverse — Taha Baraka</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0d0d0e;
+    --paper: #f7f4ef;
+    --cream: #ede9e1;
+    --gold: #b8902e;
+    --gold-light: #d4aa55;
+    --dim: #6b6560;
+    --rule: #d8d2c8;
+  }
+
+  html { font-size: 18px; scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 5rem 2rem 4.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 30% 80%, rgba(184,144,46,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 40% at 75% 20%, rgba(184,144,46,0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 1.8rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.2s;
+  }
+
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.6rem, 7vw, 5.2rem);
+    font-weight: 300;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--paper);
+    max-width: 820px;
+    margin: 0 auto 1.4rem;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 0.4s;
+  }
+
+  .hero-sub {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: rgba(247,244,239,0.6);
+    margin-bottom: 2.8rem;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 0.6s;
+  }
+
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    color: rgba(247,244,239,0.45);
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 0.75s;
+  }
+
+  .hero-meta span { display: flex; align-items: center; gap: 0.4rem; }
+  .hero-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--gold); }
+
+  /* ─── ABSTRACT BANNER ─── */
+  .abstract {
+    background: var(--cream);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 2.8rem 2rem;
+    text-align: center;
+  }
+
+  .abstract-inner {
+    max-width: 660px;
+    margin: 0 auto;
+  }
+
+  .abstract-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+
+  .abstract p {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: #3a3530;
+    line-height: 1.8;
+  }
+
+  /* ─── LAYOUT ─── */
+  .article-wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 2rem 6rem;
+  }
+
+  /* ─── PREFACE ─── */
+  .preface {
+    border-left: 2px solid var(--gold);
+    padding: 2rem 2rem 2rem 2.2rem;
+    margin: 4rem 0;
+    background: linear-gradient(to right, rgba(184,144,46,0.04), transparent);
+  }
+
+  .preface-tag {
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+  }
+
+  .preface p {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.08rem;
+    color: #3a3530;
+    line-height: 1.85;
+  }
+
+  .preface p + p { margin-top: 1rem; }
+
+  .preface-sig {
+    margin-top: 1.4rem;
+    font-size: 0.85rem;
+    color: var(--dim);
+    font-style: normal;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  /* ─── CHAPTER HEADERS ─── */
+  .chapter {
+    margin-top: 5rem;
+  }
+
+  .chapter-num {
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+  }
+
+  .chapter h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 2.2rem;
+    padding-bottom: 1.4rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* ─── SECTION HEADERS ─── */
+  .section { margin-top: 2.8rem; }
+
+  .section h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 1.18rem;
+    color: var(--ink);
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+
+  /* ─── BODY TEXT ─── */
+  p {
+    margin-bottom: 1.25rem;
+    font-size: 1rem;
+    color: #1e1c1a;
+  }
+
+  /* ─── PULL QUOTES ─── */
+  .pull {
+    margin: 2.5rem -1.5rem;
+    padding: 1.8rem 2rem;
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .pull p {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.22rem;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--paper);
+    margin: 0;
+  }
+
+  .pull p::before { content: '\201C'; color: var(--gold-light); }
+  .pull p::after  { content: '\201D'; color: var(--gold-light); }
+
+  /* ─── RULE DIVIDER ─── */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 3.5rem 0;
+    color: var(--rule);
+  }
+  .divider::before, .divider::after {
+    content: ''; flex: 1; height: 1px; background: var(--rule);
+  }
+  .divider-mark {
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* ─── CONCLUSION ─── */
+  .conclusion {
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    padding: 2.5rem 2.2rem;
+    margin-top: 4rem;
+  }
+
+  .conclusion .chapter-num { margin-bottom: 0.4rem; }
+
+  .conclusion h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 1.4rem;
+    margin-bottom: 1.4rem;
+  }
+
+  /* ─── KEYWORDS ─── */
+  .keywords {
+    margin-top: 3.5rem;
+    padding-top: 1.8rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  .keywords-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 0.9rem;
+  }
+
+  .kw-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .kw {
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    padding: 0.25rem 0.75rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    color: var(--dim);
+    border-radius: 2px;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 600px) {
+    .pull { margin: 2rem -2rem; }
+    .hero { padding: 3.5rem 1.5rem 3rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-eyebrow">Independent Research · April 2026</div>
+  <h1>The Metabolic Multiverse</h1>
+  <p class="hero-sub">A New Cosmological Paradigm</p>
+  <div class="hero-meta">
+    <span>Taha Baraka</span>
+    <span class="dot"></span>
+    <span>Cosmological Theory &amp; Philosophy of Science</span>
+  </div>
+</header>
+
+<!-- ABSTRACT -->
+<div class="abstract">
+  <div class="abstract-inner">
+    <div class="abstract-label">Abstract</div>
+    <p>What if the universe is not a machine winding down toward silence, but a living organism — breathing, metabolizing, collapsing, and blooming again? This mémoire proposes the Metabolic Multiverse: a framework that reconceptualizes ultramassive black holes as nutrient pumps, the Big Bang as a localized bloom event, and cosmic collapse as the precondition for renewal.</p>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="article-wrap">
+
+  <!-- PREFACE -->
+  <div class="preface">
+    <div class="preface-tag">Preface · A Letter to the Reader</div>
+    <p>This work did not begin with an equation. It began with a question that felt almost embarrassingly simple: what if the universe is not dying, but breathing?</p>
+    <p>The standard cosmological narrative is one of tragedy. A hot, violent beginning — the Big Bang — followed by expansion, cooling, and the long, inevitable slide toward maximum entropy: the Heat Death. Stars will burn out. Galaxies will drift apart. The last black hole will evaporate in the unimaginable future, and nothing will remain but cold, featureless void. It is, by any measure, a story that ends in silence.</p>
+    <p>But living systems do not work this way. The forest floor, covered in decay, is the most productive surface on the planet. Collapse, in the living world, is not an ending. It is a transfer.</p>
+    <p>The Metabolic Multiverse proposes that the cosmos operates by the same principle. This framework is speculative — deliberately and unapologetically so. It is a rigorous thought experiment: a map drawn from logic, analogy, and the deep suspicion that the universe is far more intelligent than our current models allow.</p>
+    <p>I have written this for the curious. For those who look at a black hole and feel something other than fear. For those who suspect that the word 'end' is almost always a mistranslation.</p>
+    <div class="preface-sig">— Taha Baraka, April 2026</div>
+  </div>
+
+  <!-- CHAPTER 1 -->
+  <div class="chapter">
+    <div class="chapter-num">Chapter One</div>
+    <h2>The Anchor of the Mega-Structure</h2>
+
+    <div class="section">
+      <h3>The Scaling Paradox of TON 618</h3>
+      <p>At the heart of the quasar TON 618, located approximately 10.4 billion light-years from Earth, lies a black hole with a mass of 66 billion solar masses. Current astrophysical models classify TON 618 as an outlier — a statistical anomaly that sits at the extreme tail of the mass distribution for black holes. In polite scientific language, it is called "ultramassive." In practice, it is something for which the standard model has no satisfying explanation. It exists, and it should not.</p>
+      <p>When we apply the M-sigma relation — the empirical law connecting black hole mass to its host galaxy — faithfully to TON 618, the math demands a host structure of staggering proportions: something orders of magnitude larger than any galaxy current astronomy has been able to map. The question is not whether TON 618 violates the law. The question is whether the law is being applied to the correct scale.</p>
+    </div>
+
+    <div class="pull"><p>We are seeing its center without seeing its body — like finding the drain of a bathtub and concluding that only the drain exists.</p></div>
+
+    <div class="section">
+      <h3>The Fractal Observer: Beyond the Cosmic Horizon</h3>
+      <p>The observable universe has a radius of approximately 46 billion light-years. This boundary is not a wall; it is a horizon. Beyond it, space continues. We are, in the most literal sense, living inside a fish tank and trying to theorize about the ocean.</p>
+      <p>The fractal hypothesis in cosmology suggests that matter is distributed in self-similar patterns across multiple scales. If galaxies cluster into super-clusters, and super-clusters cluster into the filamentary cosmic web, what prevents the next tier — Mega-Structures — from existing beyond the range of our instruments? The honest answer is: nothing.</p>
+      <p>A <em>Mega-Galaxy</em>, as defined within this framework, is a hyper-structure: a gravitationally coherent organization of trillions of standard galactic units, bound by the dominance of a central ultramassive black hole that functions as its anchor. TON 618 is, under this model, the nucleus of one such structure. The majority of its host lies beyond the edge of what we can currently detect.</p>
+    </div>
+  </div>
+
+  <div class="divider"><span class="divider-mark">§</span></div>
+
+  <!-- CHAPTER 2 -->
+  <div class="chapter">
+    <div class="chapter-num">Chapter Two</div>
+    <h2>The Metabolism of the Singularity</h2>
+
+    <div class="section">
+      <h3>Beyond the Graveyard: The Nutrient Pump Hypothesis</h3>
+      <p>The dominant metaphor for black holes in both scientific literature and popular culture is the graveyard. Matter falls in; nothing comes out. The Nutrient Pump Hypothesis inverts this entirely. It proposes that the black hole is not a graveyard but a digestive organ — the most sophisticated processing system the universe has evolved. Rather than destroying what it consumes, the black hole performs a transformation: it strips matter of its local entropy and reconverts it into a high-energy, ordered form that can be deployed elsewhere.</p>
+      <p>When a forest decomposes — when leaves fall, organisms die, and complex organic matter breaks down — the process looks, at the local level, like destruction. At the systemic level, it is anything but. The nutrients released by decomposition become the substrate for new growth. The black hole, we propose, is the universe's version of this decomposition layer.</p>
+    </div>
+
+    <div class="section">
+      <h3>The Event Horizon as Metabolic Membrane</h3>
+      <p>The event horizon is typically treated as a one-way gate. The Metabolic Multiverse proposes a reframing: it is a metabolic membrane. In biology, a membrane is not simply a barrier — it is a selective interface that regulates the passage of matter and energy, maintaining the conditions necessary for the organism's function.</p>
+      <p>The event horizon, understood this way, is the site of transformation, not termination. On the input side: disordered energy, cooling stars, dispersed matter. On the output side: something qualitatively different. The holographic principle, developed by 't Hooft and Susskind, proposes that all information within a volume of space can be encoded on its boundary surface. The Metabolic Multiverse asks: if the horizon stores and encodes, what does it do with what it stores?</p>
+    </div>
+
+    <div class="section">
+      <h3>The Inter-Dimensional Trunk</h3>
+      <p>If the black hole is a nutrient pump, where does the output go? In the Metabolic Multiverse, processed energy travels through what we call the <em>Trunk</em>: a hypothetical channel through which structured, low-entropy energy is transported from the singularity to the point of new deployment. Just as blood carries nutrients from the digestive system to every cell in the body, the Trunk carries processed cosmological energy from the central black hole to the frontier branches of the Mega-Tree.</p>
+      <p>The concept is partly inspired by the ER=EPR conjecture of Maldacena and Susskind, which suggests a deep equivalence between wormholes and quantum entanglement. The Trunk, as conceived here, is not a tunnel through space so much as a channel through the organizational hierarchy of the cosmos.</p>
+    </div>
+  </div>
+
+  <div class="divider"><span class="divider-mark">§</span></div>
+
+  <!-- CHAPTER 3 -->
+  <div class="chapter">
+    <div class="chapter-num">Chapter Three</div>
+    <h2>The Birth of the Branch</h2>
+
+    <div class="section">
+      <h3>Redefining the Big Bang as a Localized Bloom</h3>
+      <p>The Big Bang is, in the popular imagination, the beginning of everything. The Metabolic Multiverse does not dispute the observational evidence for it. The dispute is not with the data but with the interpretation.</p>
+      <p>The alternative offered here is this: the Big Bang was not the beginning of the universe. It was the beginning of our branch. Specifically, it was a <em>bloom event</em> — the rapid expansion of a concentrated package of processed energy, delivered via the Trunk from a prior metabolic cycle, into a region of the Mega-Tree available for new growth. Our universe did not emerge from nothing. It emerged from something — from the compressed and recoded output of a previous cosmic collapse. Our Big Bang was a germination: the unfolding of a cosmic seed formed in the furnace of a prior singularity.</p>
+    </div>
+
+    <div class="pull"><p>The observable universe is a single branch — one bloom among an uncountable number, all growing from the same underlying Mega-Structure.</p></div>
+
+    <div class="section">
+      <h3>The Mega-Tree Structure of the Multiverse</h3>
+      <p>The organizational metaphor that best captures this architecture is not a web, a bubble, or a network. It is a tree — a branching, hierarchical structure in which each node represents a bloom event and each branch represents an expanding universe growing from that node. Trees are defined by hierarchy, unidirectionality of nutrient flow, and fractal self-similarity. The Metabolic Multiverse shares all three.</p>
+      <p>The crucial distinction from the Many-Worlds interpretation or the inflationary multiverse: in those models, branches are causally disconnected — they cannot exchange energy or information. In the Mega-Tree, the branches are <em>metabolically connected</em>. The collapse of one branch is the precondition for the bloom of another. The multiverse is not a collection of isolated universes. It is a single living organism.</p>
+    </div>
+  </div>
+
+  <div class="divider"><span class="divider-mark">§</span></div>
+
+  <!-- CHAPTER 4 -->
+  <div class="chapter">
+    <div class="chapter-num">Chapter Four</div>
+    <h2>The Hourglass Flip</h2>
+
+    <div class="section">
+      <h3>The Cycle of Recirculation</h3>
+      <p>The Hourglass is among humanity's oldest metaphors for time. Sand falls from the upper chamber to the lower — an image of irreversibility. When the hourglass is empty, it is done. To make it run again, someone must flip it.</p>
+      <p>The <em>Hourglass Flip</em>, as a cosmological mechanism, inverts this fatalism. The cosmos does not run down and stop. It runs down and flips. The cycle has four phases: <strong>Bloom</strong> (rapid expansion of processed energy into a new branch), <strong>Growth</strong> (the long stellar and galactic evolution of the branch), <strong>Harvest</strong> (gravitational collapse of aging structures back toward the central anchor), and <strong>Discharge</strong> (the release of compressed energy into the next bloom) — mapping precisely onto the four seasons of a biological year.</p>
+    </div>
+
+    <div class="section">
+      <h3>Why No Information Is Ever Lost</h3>
+      <p>The claim that no information is ever lost is the framework's deepest philosophical commitment. A universe in which information is preserved across cycles is, in a meaningful sense, continuous. The next bloom is not a random new beginning — it carries within it the recoded history of all that came before.</p>
+      <p>If information is preserved across cycles, then the Mega-Tree is not just a physical structure but a kind of cosmic memory. The universe remembers — not the way a library remembers, with accessible records and retrievable files, but the way a living organism remembers: in its structure, its tendencies, its instincts. The patterns of one cycle become the predispositions of the next.</p>
+    </div>
+  </div>
+
+  <div class="divider"><span class="divider-mark">§</span></div>
+
+  <!-- CHAPTER 5 -->
+  <div class="chapter">
+    <div class="chapter-num">Chapter Five</div>
+    <h2>The Universal Mirror — Cosmology and the Human Self</h2>
+
+    <p>This chapter steps deliberately outside the conventions of scientific writing. It offers an extended meditation on the correspondence between the cosmological logic developed in the preceding chapters and the structure of human experience — specifically, the experience of identity in crisis.</p>
+    <p>The correspondence is not decoration. When a theoretical framework developed to explain the behavior of black holes turns out to illuminate the structure of personal psychological experience with precision and depth, this is not coincidence. It is evidence that the framework is tracking something real about the organizational logic of complex systems in general. The cosmos and the self are not the same thing. But they may be governed by the same deep grammar.</p>
+
+    <div class="section">
+      <h3>The Human Identity as Metabolic System</h3>
+      <p>Identity, in this framework, is not a fixed possession but a metabolic process. A living organism maintains its identity not by preserving its material substance intact, but by continuously replacing it. Every cell in the human body is replaced, on timescales ranging from days to years. What persists is not the material but the pattern.</p>
+      <p>Human identity operates the same way. The person you are today is not the person you were at ten years old. What persists — if it persists — is not the original content but the capacity for organization: the metabolic logic of the self that takes new experience and integrates it into a coherent, ongoing story. This is why identity crises are not pathological. They are metabolic.</p>
+    </div>
+
+    <div class="pull"><p>What you feel as consumption is actually processing. The grief, the confusion, the loss of the old self — it is being stripped of its attachment to a particular form. Pain is not the same as destruction.</p></div>
+
+    <div class="section">
+      <h3>Re-Blooming: Identity After Collapse</h3>
+      <p>The Re-Bloom at the personal scale is distinct from recovery, which implies a return to a prior state, and from resilience, which implies the maintenance of function under pressure. Re-Blooming is something more radical: the emergence of a qualitatively different organization of the self, carrying the compressed history of the collapse as its seed.</p>
+      <p>What the framework offers to those in the midst of a Personal Singularity — in the dark phase before the Flip — is not comfort in the conventional sense, but orientation. You are not in a graveyard. You are in a digestive system. The darkness is not the absence of the process. The darkness <em>is</em> the process. The Hourglass Flip cannot happen until the sand has run down. But the Flip does happen.</p>
+    </div>
+  </div>
+
+  <div class="divider"><span class="divider-mark">§</span></div>
+
+  <!-- CONCLUSION -->
+  <div class="conclusion">
+    <div class="chapter-num">Conclusion</div>
+    <h2>Toward a Living Cosmology</h2>
+    <p>The Metabolic Multiverse is, at its core, a proposal about category. It proposes that the universe belongs not in the category of machines — objects that entropy governs toward silence — but in the category of organisms: entities that process entropy as a resource, transform collapse into fuel, and maintain their coherence through dynamic, metabolic renewal.</p>
+    <p>The framework is speculative. It makes claims that current physics cannot fully evaluate. This is not a weakness to be apologized for; it is a genre to be acknowledged. The history of science is populated with conceptual architectures built before the mathematics arrived. The heliocentric model was argued philosophically before it was confirmed observationally. Ideas must be thought before they can be tested. Maps must be drawn before they can be corrected.</p>
+    <p>We are made, after all, of stellar material — of atoms forged in the cores of stars that died billions of years before the Earth existed. We are not separate from the metabolic cycle. We are an expression of it. The Metabolic Multiverse is an invitation to think at this scale — and to find, in that thinking, not insignificance, but belonging.</p>
+  </div>
+
+  <!-- KEYWORDS -->
+  <div class="keywords">
+    <div class="keywords-label">Keywords</div>
+    <div class="kw-list">
+      <span class="kw">Cosmology</span>
+      <span class="kw">Black Holes</span>
+      <span class="kw">Fractal Universe</span>
+      <span class="kw">Multiverse</span>
+      <span class="kw">Metabolism</span>
+      <span class="kw">TON 618</span>
+      <span class="kw">Big Bang</span>
+      <span class="kw">Entropy</span>
+      <span class="kw">Hourglass Flip</span>
+      <span class="kw">Identity</span>
+      <span class="kw">Philosophy of Science</span>
+    </div>
+  </div>
+
+</div><!-- /article-wrap -->
+
+</body>
+</html>
